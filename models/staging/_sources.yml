@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Camada Bronze. Tabelas cruas carregadas a partir dos CSVs originais do
+      dataset Olist (https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce),
+      sem nenhum tratamento. Populadas via scripts/load_raw_data.py.
+    database: olist
+    schema: raw
+    tables:
+      - name: olist_orders_dataset
+        description: Um registro por pedido, com status e datas do ciclo de entrega.
+        columns:
+          - name: order_id
+            description: Identificador unico do pedido.
+          - name: customer_id
+            description: Chave para o cliente que fez o pedido.
+          - name: order_status
+            description: Status atual do pedido (delivered, shipped, canceled, etc).
+
+      - name: olist_customers_dataset
+        description: Um registro por customer_id, com localizacao do cliente.
+        columns:
+          - name: customer_id
+            description: Chave de pedido para o cliente.
+          - name: customer_state
+            description: UF do cliente.
+
+      - name: olist_order_items_dataset
+        description: Um registro por item de pedido, com preco e frete.
+        columns:
+          - name: order_id
+            description: Chave para o pedido.
+          - name: price
+            description: Valor do item (sem frete).

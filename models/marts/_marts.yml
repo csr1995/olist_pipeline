@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: fct_pedidos
+    description: >
+      Tabela Fato final (grao = 1 linha por pedido entregue). Une pedidos
+      filtrados por order_status = 'delivered', clientes e o valor total
+      dos itens de cada pedido.
+    columns:
+      - name: order_id
+        description: Identificador unico do pedido. Chave primaria da tabela fato.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Chave do cliente que fez o pedido.
+        tests:
+          - not_null
+      - name: customer_state
+        description: UF do cliente (usada para agrupar faturamento por estado).
+        tests:
+          - not_null
+
+  - name: fct_faturamento_por_estado
+    description: >
+      Camada Ouro agregada. Faturamento total, numero de pedidos entregues
+      e ticket medio por customer_state, a partir de fct_pedidos.
+    columns:
+      - name: customer_state
+        description: UF do cliente.
+        tests:
+          - not_null
+          - unique
+      - name: faturamento_total
+        description: Soma do valor (preco + frete) dos pedidos entregues no estado.
