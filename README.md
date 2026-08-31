@@ -4,8 +4,6 @@ Pipeline dbt Core + DuckDB (dataset [Brazilian E-Commerce Public Dataset by Olis
 
 📄 **Documentação completa**: [`docs/GUIA_DBT.md`](docs/GUIA_DBT.md) — explica o
 que é o dbt, cada camada do projeto e cada decisão tomada.
-📄 **Cola para entrevista**: [`docs/ROTEIRO_ENTREVISTA.md`](docs/ROTEIRO_ENTREVISTA.md)
-— perguntas prováveis sobre dbt com respostas prontas, usando este projeto de exemplo.
 
 ## Arquitetura (medallion)
 
